@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Trade Blog</h2>
+    <a href="{% url 'post_create' %}" class="btn btn-primary mb-3">New Post</a>
+    
+    {% for post in posts %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <img src="{{ post.chart_image.url }}" class="img-fluid mb-3" alt="Trade chart">
+            <p class="card-text">{{ post.content }}</p>
+            <p class="text-muted">Posted by {{ post.user.username }} on {{ post.created_at }}</p>
+            
+            {% if post.user == request.user %}
+            <div class="btn-group">
+                <a href="{% url 'post_update' post.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                <a href="{% url 'post_delete' post.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,163 @@
+{% extends 'main/base.html' %}
+{% load static %}  
+
+{% block content %}
+<div class="container">
+    <!-- Image Carousel -->
+    <div id="stockCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src= "{% static 'images/1.jpg' %}" class="d-block w-100 img-fluid" alt="Stock Market">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/2.jpg' %}" class="d-block w-100 img-fluid" alt="Trading">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/3.jpg' %}" class="d-block w-100 img-fluid" alt="Finance">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#stockCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#stockCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Welcome Message -->
+    <div class="text-center mb-5">
+        <h1 class="display-4">Welcome to NiveshGuru!</h1>
+        {% if user.is_authenticated %}
+            <p class="lead">Hello, {{ user.username }}! Ready to explore the markets?</p>
+        {% else %}
+            <p class="lead">Your Premier Indian Stock Market Analysis Platform</p>
+        {% endif %}
+    </div>
+
+    <!-- Feature Boxes -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card h-100 shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-journal-text fs-1 text-primary"></i>
+                    <h3 class="card-title mt-3">TradeBlog</h3>
+                    <p class="card-text">Daily market analysis, trading strategies, and expert insights for Indian markets.</p>
+                    <a href="{% url 'login' %}"class="btn btn-outline-primary">Read Analysis</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-graph-up fs-1 text-success"></i>
+                    <h3 class="card-title mt-3">LSTM Predictor</h3>
+                    <p class="card-text">AI-powered stock predictions using advanced LSTM neural networks.</p>
+                    <a href="{% url 'login' %}" class="btn btn-outline-success">Try Predictor</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-speedometer2 fs-1 text-info"></i>
+                    <h3 class="card-title mt-3">Live Dashboard</h3>
+                    <p class="card-text">Real-time NSE/BSE tracking with advanced technical indicators.</p>
+                    <a href="{% url 'login' %}" class="btn btn-outline-info">View Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stock Market Content -->
+    <div class="row align-items-md-stretch mb-5">
+        <div class="col-md-6">
+            <div class="h-100 p-5 bg-light border rounded-3">
+                <h2>Real-time Market Data</h2>
+                <p>Track live Nifty 50, Sensex, and sectoral indices with advanced charting tools:</p>
+                <div class="mock-chart bg-white p-3 rounded">
+                    <!-- Add your chart integration here -->
+                    <p class="text-muted">[Live Chart Placeholder]</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="h-100 p-5 text-white bg-dark rounded-3">
+                <h2>Key Features</h2>
+                <ul class="list-unstyled">
+                    <li class="mb-3"><i class="bi bi-check-circle me-2"></i>Advanced Technical Analysis Tools</li>
+                    <li class="mb-3"><i class="bi bi-check-circle me-2"></i>Fundamental Stock Screener</li>
+                    <li class="mb-3"><i class="bi bi-check-circle me-2"></i>Options Chain Analysis</li>
+                    <li class="mb-3"><i class="bi bi-check-circle me-2"></i>Historical Data (10+ years)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Educational Section -->
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Learning Resources</h1>
+            <p class="col-md-8 fs-4">Master the markets with our comprehensive educational resources:</p>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Beginner's Guide</h5>
+                            <p class="card-text">Learn the basics of stock market investing</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Technical Analysis</h5>
+                            <p class="card-text">Master chart patterns and indicators</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Derivatives Trading</h5>
+                            <p class="card-text">Understand futures and options strategies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card:hover {
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+    }
+    .mock-chart {
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    /* Make the carousel full width */
+    #stockCarousel {
+        width: 100vw; /* Full width of viewport */
+        max-width: 100%;
+    }
+
+    /* Reduce the height of images */
+    .carousel-item img {
+        height: 350px; /* Adjust this height as needed */
+        width: 400vw; /* Make sure it stretches across the screen */
+        object-fit: cover; /* Ensures the image covers the given height while maintaining aspect ratio */
+    }
+
+  
+</style>
+
+<!-- Add Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+{% endblock %}

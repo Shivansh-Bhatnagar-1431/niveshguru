@@ -1,0 +1,186 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <!-- Search Bar -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <form method="get" action="{% url 'search_stock' %}">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search Stock..." name="symbol">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+  <!-- For Indices -->
+{% for index in indices %}
+<div class="col">
+    <div class="card h-100 shadow">
+        <div class="card-body">
+            <h5 class="card-title">{{ index.index }}</h5>
+            <h2 class="card-text {% if index.percentChange >= 0 %}text-success{% else %}text-danger{% endif %}">
+                ₹{{ index.current }}
+            </h2>
+            <span class="badge {% if index.percentChange >= 0 %}bg-success{% else %}bg-danger{% endif %}">
+                {{ index.percentChange }}%
+            </span>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<!-- For Gainers Table -->
+{% for stock in top_gainers %}
+<tr>
+    <td>{{ stock.symbol }}</td>
+    <td>{{ stock.openPrice }}</td>
+    <td>{{ stock.highPrice }}</td>
+    <td>{{ stock.lowPrice }}</td>
+    <td>{{ stock.lastPrice }}</td>
+    <td class="{% if stock.percentChange >= 0 %}text-success{% else %}text-danger{% endif %}">
+        {{ stock.percentChange }}%
+    </td>
+</tr>
+{% endfor %}
+
+    <!-- Charts Section -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    Top Gainers
+                </div>
+                <div class="card-body">
+                    <canvas id="gainersChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-danger text-white">
+                    Top Losers
+                </div>
+                <div class="card-body">
+                    <canvas id="losersChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Tables -->
+    <div class="card shadow">
+        <div class="card-header bg-info text-white">
+            Market Overview
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped" id="marketTable">
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Open</th>
+                            <th>High</th>
+                            <th>Low</th>
+                            <th>Last Price</th>
+                            <th>Change %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for stock in top_gainers|dictsortreversed:"percentChange" %}
+                        <tr>
+                            <td>{{ stock.symbol }}</td>
+                            <td>{{ stock.openPrice }}</td>
+                            <td>{{ stock.highPrice }}</td>
+                            <td>{{ stock.lowPrice }}</td>
+                            <td>{{ stock.lastPrice }}</td>
+                            <td class="{% if stock.percentChange >= 0 %}text-success{% else %}text-danger{% endif %}">
+                                {{ stock.percentChange|floatformat:2 }}%
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Gainers Chart
+    const gainersCtx = document.getElementById('gainersChart').getContext('2d');
+    new Chart(gainersCtx, {
+        type: 'bar',
+        data: {
+            labels: [{% for stock in top_gainers %}"{{ stock.symbol }}",{% endfor %}],
+            datasets: [{
+                label: 'Percentage Change',
+                data: [{% for stock in top_gainers %}{{ stock.percentChange|floatformat:2 }},{% endfor %}],
+                backgroundColor: 'rgba(75, 192, 192, 0.6)'
+            }]
+        }
+    });
+
+    // Losers Chart
+    const losersCtx = document.getElementById('losersChart').getContext('2d');
+    new Chart(losersCtx, {
+        type: 'bar',
+        data: {
+            labels: [{% for stock in top_losers %}"{{ stock.symbol }}",{% endfor %}],
+            datasets: [{
+                label: 'Percentage Change',
+                data: [{% for stock in top_losers %}{{ stock.percentChange|floatformat:2 }},{% endfor %}],
+                backgroundColor: 'rgba(255, 99, 132, 0.6)'
+            }]
+        }
+    });
+</script>
+<!-- For Indices -->
+{% for index in indices %}
+<div class="col">
+    <div class="card h-100 shadow">
+        <div class="card-body">
+            <h5 class="card-title">{{ index.indexName }}</h5>
+            <h2 class="card-text {% if index.percentChange >= 0 %}text-success{% else %}text-danger{% endif %}">
+                ₹{{ index.last }}
+            </h2>
+            <span class="badge {% if index.percentChange >= 0 %}bg-success{% else %}bg-danger{% endif %}">
+                {{ index.percentChange }}%
+            </span>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<!-- For Gainers/Losers Tables -->
+{% for stock in top_gainers %}
+<tr>
+    <td>{{ stock.symbol }}</td>
+    <td>{{ stock.openPrice }}</td>
+    <td>{{ stock.highPrice }}</td>
+    <td>{{ stock.lowPrice }}</td>
+    <td>{{ stock.lastPrice }}</td>
+    <td class="{% if stock.percentChange >= 0 %}text-success{% else %}text-danger{% endif %}">
+        {{ stock.percentChange }}%
+    </td>
+</tr>
+{% endfor %}
+
+<!-- Include DataTables -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#marketTable').DataTable({
+            "order": [[5, "desc"]],
+            "pageLength": 10
+        });
+    });
+</script>
+{% endblock %}

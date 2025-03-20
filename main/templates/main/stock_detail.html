@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary mb-3">← Back to Dashboard</a>
+    
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            {{ symbol }} - Stock Details
+        </div>
+        <div class="card-body">
+            <!-- Add stock detail visualization here -->
+        </div>
+    </div>
+</div>
+{% endblock %}

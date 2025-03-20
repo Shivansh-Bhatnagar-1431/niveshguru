@@ -1,0 +1,45 @@
+INFO 2025-03-16 12:38:06,608 views Successful login: shivani
+WARNING 2025-03-16 12:38:16,251 views Authenticated user attempted to access login page
+INFO 2025-03-16 12:49:32,558 views Successful login: shivani
+WARNING 2025-03-16 12:49:48,615 views Authenticated user attempted to access login page
+WARNING 2025-03-16 12:50:53,858 views Authenticated user attempted to access login page
+INFO 2025-03-16 17:04:23,303 views Successful login: shivani
+INFO 2025-03-19 17:56:11,567 views Successful login: shivansh
+INFO 2025-03-19 17:56:28,767 views User shivansh initiated logout
+INFO 2025-03-19 17:56:28,775 views User logged out successfully
+WARNING 2025-03-19 18:13:24,145 views Failed login attempt for username: hi
+WARNING 2025-03-19 18:13:30,735 views Failed login attempt for username: j
+WARNING 2025-03-19 18:46:54,308 views Failed login attempt for username: 2
+WARNING 2025-03-19 18:47:38,322 views Failed login attempt for username: s
+WARNING 2025-03-19 18:47:44,974 views Failed login attempt for username: lo
+WARNING 2025-03-19 18:47:49,104 views Failed login attempt for username: lo
+WARNING 2025-03-19 18:47:52,648 views Failed login attempt for username: lo
+WARNING 2025-03-19 18:51:40,376 views Failed login attempt for username: shivansh11
+WARNING 2025-03-19 18:51:51,387 views Failed login attempt for username: shivansh11
+WARNING 2025-03-19 18:52:01,993 views Failed login attempt for username: shivansh
+WARNING 2025-03-19 18:52:17,352 views Failed login attempt for username: hi
+WARNING 2025-03-19 18:56:02,536 views Failed login attempt for username: shivansh1
+INFO 2025-03-19 18:56:05,401 views Successful login: shivansh
+INFO 2025-03-19 18:56:18,411 views User shivansh initiated logout
+INFO 2025-03-19 18:56:18,416 views User logged out successfully
+WARNING 2025-03-19 18:57:16,896 views Failed login attempt for username: shivansh1
+INFO 2025-03-19 18:57:22,887 views Successful login: shivansh
+INFO 2025-03-19 19:07:40,365 views User shivansh initiated logout
+INFO 2025-03-19 19:07:40,376 views User logged out successfully
+INFO 2025-03-19 19:08:33,042 views Successful login: shivansh
+INFO 2025-03-19 19:08:36,766 views User shivansh initiated logout
+INFO 2025-03-19 19:08:36,780 views User logged out successfully
+WARNING 2025-03-20 09:42:48,485 views Failed login attempt for username: shivansh1
+WARNING 2025-03-20 09:44:14,163 views Failed login attempt for username: shivansh22
+INFO 2025-03-20 09:44:32,792 views Successful login: shivansh
+INFO 2025-03-20 09:44:47,901 views User shivansh initiated logout
+INFO 2025-03-20 09:44:47,909 views User logged out successfully
+WARNING 2025-03-20 09:45:01,177 views Failed login attempt for username: shivansh11
+INFO 2025-03-20 09:48:21,560 views User shivansh initiated logout
+INFO 2025-03-20 09:48:21,571 views User logged out successfully
+WARNING 2025-03-20 09:48:34,555 views Failed login attempt for username: shivansh11
+WARNING 2025-03-20 09:49:37,663 views Failed login attempt for username: shivansh11
+WARNING 2025-03-20 09:49:42,683 views Failed login attempt for username: shivansh11
+INFO 2025-03-20 10:25:48,962 views Successful login: shivansh
+WARNING 2025-03-20 10:30:01,353 views Authenticated user attempted to access login page
+INFO 2025-03-20 10:33:44,983 views Successful login: shivansh
